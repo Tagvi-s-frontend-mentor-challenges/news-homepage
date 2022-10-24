@@ -1,0 +1,262 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+:root {
+  font-size: 62.5%;
+}
+::selection {
+  background-color: hsl(35, 77%, 62%);
+  color: hsl(240, 100%, 5%);
+}
+.hidden {
+  display: none;
+}
+body {
+  padding: 5vh 7.5vw;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  font-size: 1.6rem;
+  overflow-x: hidden;
+}
+body > .content {
+  max-width: 1200px;
+  margin-inline: auto;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+nav a {
+  transition: color 0.2s linear;
+}
+nav a:hover {
+  color: hsl(5, 85%, 63%);
+}
+
+main picture {
+  grid-area: img;
+}
+main picture img {
+  width: 100%;
+}
+main h1 {
+  font-size: 5rem;
+  max-width: 10ch;
+  margin-block: 2rem;
+  font-weight: 800;
+  grid-area: h1;
+}
+main p {
+  font-size: 1.8rem;
+  max-width: 30ch;
+  margin-bottom: 2rem;
+  color: hsl(236, 13%, 42%);
+}
+main div {
+  grid-area: other;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+main button {
+  background-color: hsl(5, 85%, 63%);
+  padding: 2rem 4rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.4rem;
+  font-weight: 700;
+  transition: all 0.3s ease-out;
+}
+main button:hover {
+  background-color: hsl(240, 100%, 5%);
+  color: white;
+}
+aside {
+  background-color: hsl(240, 100%, 5%);
+  color: white;
+  padding: 3rem;
+  margin-top: 8rem;
+}
+
+aside h1 {
+  color: hsl(35, 77%, 62%);
+  margin-bottom: 2rem;
+  font-size: 3.75rem;
+}
+article h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  transition: color 0.2s linear;
+}
+article h2:hover {
+  color: hsl(35, 77%, 62%);
+  cursor: pointer;
+}
+article p {
+  color: hsl(233, 8%, 79%);
+  font-size: 2rem;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: hsl(236, 13%, 42%);
+  margin-block: 2rem;
+}
+
+ol {
+  list-style: none;
+  margin-block: 8rem 2rem;
+}
+li article {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  /*overflow: hidden;*/
+}
+li article img {
+  height: 0;
+  flex-shrink: 0;
+}
+li span {
+  font-size: 4rem;
+  font-weight: 700;
+  color: hsl(233, 8%, 79%);
+  margin-bottom: 1rem;
+}
+li h1 {
+  font-size: 2.25rem;
+  transition: color 0.2s linear;
+}
+li h1:hover {
+  color: hsl(5, 85%, 63%);
+  cursor: pointer;
+}
+li .content {
+  height: max-content;
+  max-width: 100%;
+}
+li .content * + * {
+  margin-top: 1rem;
+}
+ol p {
+  font-size: 1.8rem;
+  color: hsl(236, 13%, 42%);
+}
+ol > * + * {
+  margin-top: 4rem;
+}
+
+@media screen and (min-width: 701px) {
+  nav button {
+    display: none;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    color: hsl(236, 13%, 42%);
+  }
+}
+@media screen and (min-width: 1000px) {
+  main {
+    grid-column: span 2;
+    display: grid;
+    grid-template-areas:
+      "img img"
+      "h1 other";
+    grid-gap: 4rem;
+  }
+  main button {
+    margin-top: auto;
+  }
+  main h1 {
+    margin-top: 0;
+  }
+  nav + div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 4rem;
+  }
+  aside {
+    margin-top: 0;
+    max-width: 350px;
+    margin-left: auto;
+  }
+  section {
+    /*grid-column: span 3;*/
+    display: grid;
+    grid-column: 1 / -1;
+    grid: inherit;
+    grid-gap: inherit;
+  }
+  section ol {
+    /*display: grid;*/
+    /*grid-template-columns: 1fr 1fr 1fr;*/
+    /*gap: 4rem;*/
+    display: grid;
+    grid-column: 1 / -1;
+    grid: inherit;
+    grid-gap: inherit;
+  }
+  section ol > * + * {
+    margin-top: 0;
+  }
+}
+
+/*I initially wrote this and moved it to the media query later. This was designed as mobile-first*/
+
+@media screen and (max-width: 700px) {
+  .backdrop {
+    background-color: #000a;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+  .menu.open {
+    transform: translateX(0);
+  }
+  .menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70vw;
+    height: 100vh;
+    transform: translateX(300%);
+    transition: all 0.2s linear;
+    background-color: white;
+    padding: 5vh 7.5vw;
+  }
+  .menu ul {
+    list-style: none;
+    font-size: 2.5rem;
+  }
+  .menu li {
+    margin-bottom: 2rem;
+  }
+  .menu button {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 30%;
+  }
+}
